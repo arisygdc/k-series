@@ -5,11 +5,10 @@ from sklearn.metrics import davies_bouldin_score
 from sklearn_extra.cluster import KMedoids
 
 class dataset():
-    def __init__(self, data_path):
-        self.setData(data_path)
+    def __init__(self):
         self.dbi = 0
     
-    def setData(self, data_path):
+    def loadData(self, data_path):
         self.dataframe = pd.read_excel(data_path, skiprows=1, usecols="B:CN")
 
     def numpyArrTransform(self):
@@ -33,11 +32,8 @@ class dataset():
         
 
 class Clustering:
-    def __init__(self, cluster_algorithm: str):
-        self.ClusterAlg = cluster_algorithm
-    
-    def define(self, centroids):
-        match self.ClusterAlg:
+    def define(self, centroids, cluster_algorithm: str):
+        match cluster_algorithm:
             case "K-Means":
                 if centroids.size == 0:
                     centroids = "k-means++"
