@@ -53,12 +53,14 @@ class Clustering:
             return None
         self.data = data
         self.cluster.fit(self.data)
+        self.label = self.cluster.labels_
         return self.cluster.labels_
     
     def dbi(self):
-        if self.data.size == 0:
+        if self.label.size == 0:
             return None
         if self.score == 0:
-            self.score = davies_bouldin_score(self.data, self.cluster.predict(self.data))
+            data = self.data
+            self.score = davies_bouldin_score(data, self.label)
         return self.score
             
