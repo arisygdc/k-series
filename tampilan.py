@@ -7,15 +7,10 @@ dataselector = {
     "K-Medoids": ["Median"]
 }
 
-list_filename = {
-    "K-Means_Median": "data_setelah_preprocessing_Lengkap_Median_K-Means2.xlsx",
-    "K-Means_Mean": "data_setelah_preprocessingMeanLengkap.xlsx",
-    "K-Medoids_Median": "Data_Setelah_Prepocessing_Median_K-Medoids.xlsx"
-}
-
 currAlg = 'K-Means'
 currFile = 'Median'
 onchange = 1
+
 # Judul
 st.title('K-Means dan K-Medoids')
 
@@ -35,8 +30,7 @@ if onchange == 1:
     cluster = ut.Clustering()
 
     # mengambil dataset
-    filename = list_filename[selectedAlg + "_" + fileSelector]
-    dataset.loadData(filename)
+    dataset.loadData(selectedAlg, fileSelector)
     st.write(dataset.getDataframe())
 
     # inisialisasi clustering

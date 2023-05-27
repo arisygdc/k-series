@@ -5,11 +5,11 @@ from sklearn.metrics import davies_bouldin_score
 from sklearn_extra.cluster import KMedoids
 
 class dataset():
-    def __init__(self):
-        self.dbi = 0
-    
-    def loadData(self, data_path):
-        self.dataframe = pd.read_excel(data_path, skiprows=1, usecols="B:CN")
+    def loadData(self, file, selector):
+        filename = "dataset/"+file
+        if selector != None:
+            filename = f"{filename}_{selector}.xlsx"
+        self.dataframe = pd.read_excel(filename, skiprows=1, usecols="B:CN")
 
     def numpyArrTransform(self):
         return np.array(self.dataframe.iloc[:, 1:90])
