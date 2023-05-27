@@ -15,7 +15,7 @@ onchange = 1
 st.title('K-Means dan K-Medoids')
 
 # Dropdown
-selectedAlg = st.selectbox('Pilih Algoritma', ['K-Means', 'K-Medoids'])
+selectedAlg = st.selectbox('Pilih Algoritma', dataselector.keys())
 
 # File Selector
 fileSelector = st.selectbox('Pilih dataset', dataselector[selectedAlg])
