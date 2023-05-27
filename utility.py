@@ -32,6 +32,9 @@ class dataset():
         
 
 class Clustering:
+    def __init__(self):
+        self.score = 0
+        
     def define(self, centroids, cluster_algorithm: str):
         match cluster_algorithm:
             case "K-Means":
@@ -42,7 +45,9 @@ class Clustering:
                 if centroids.size == 0:
                     centroids = "euclidean"
                 self.cluster = KMedoids(n_clusters=3, init=centroids, random_state=0)
-
+    def get(self):
+        return self.data
+    
     def fit(self, data):
         if data.size == 0:
             return None
@@ -53,7 +58,7 @@ class Clustering:
     def dbi(self):
         if self.data.size == 0:
             return None
-        if self.dbi == 0:
-            self.dbi = davies_bouldin_score(self.data, self.cluster.predict(self.data))
-        return self.dbi
+        if self.score == 0:
+            self.score = davies_bouldin_score(self.data, self.cluster.predict(self.data))
+        return self.score
             

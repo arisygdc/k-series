@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import utility as ut
-
 
 dataselector = {
     "K-Means": ["Median", "Mean"],
@@ -50,7 +48,8 @@ if onchange == 1:
     arr = dataset.numpyArrTransform()
     label = cluster.fit(arr)
 
-    st.write("Data setelah clustering")
+    dbi = cluster.dbi()
+    st.write(f"Data setelah clustering dengan dbi: {dbi}")
     dataset.setLabel(label)
     clustered = pd.DataFrame(data=[
         dataset.searchLabel(0),
