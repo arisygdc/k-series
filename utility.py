@@ -4,9 +4,11 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import davies_bouldin_score
 from sklearn_extra.cluster import KMedoids
 
+DATASET_DIR = "dataset"
+
 class dataset():
     def loadData(self, file, selector):
-        filename = "dataset/"+file
+        filename = DATASET_DIR+"/"+file
         if selector != None:
             filename = f"{filename}_{selector}.xlsx"
         self.dataframe = pd.read_excel(filename, skiprows=1, usecols="B:CN")
@@ -63,4 +65,13 @@ class Clustering:
             data = self.data
             self.score = davies_bouldin_score(data, self.label)
         return self.score
-            
+
+def loadDataSelector(dataset_file):
+    dataselector = {}
+    for i in dataset_file:
+        s = i.split("_")
+        if s[0] in dataselector:
+            dataselector[s[0]].append(s[1][:-5])
+            continue
+        dataselector[s[0]] = [s[1][:-5]]
+    return dataselector

@@ -1,11 +1,11 @@
 import streamlit as st
 import pandas as pd
 import utility as ut
+import os
 
-dataselector = {
-    "K-Means": ["Median", "Mean"],
-    "K-Medoids": ["Median"]
-}
+dataset_file = os.listdir(ut.DATASET_DIR)
+
+dataselector = ut.loadDataSelector(dataset_file)
 
 keys = list(dataselector.keys())
 currAlg = keys[0]
