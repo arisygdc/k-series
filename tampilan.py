@@ -7,15 +7,16 @@ dataselector = {
     "K-Medoids": ["Median"]
 }
 
-currAlg = 'K-Means'
-currFile = 'Median'
+keys = list(dataselector.keys())
+currAlg = keys[0]
+currFile = dataselector[currAlg][0]
 onchange = 1
 
 # Judul
 st.title('K-Means dan K-Medoids')
 
 # Dropdown
-selectedAlg = st.selectbox('Pilih Algoritma', dataselector.keys())
+selectedAlg = st.selectbox('Pilih Algoritma', keys)
 
 # File Selector
 fileSelector = st.selectbox('Pilih dataset', dataselector[selectedAlg])
